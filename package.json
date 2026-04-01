@@ -1,0 +1,47 @@
+{
+  "name": "visioneuse-carto",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Visioneuse de l'éditeur cartographique de cartes.gouv.fr",
+  "author": "IGNF",
+  "license": "GPL-3",
+  "scripts": {
+    "start": "vite --force",
+    "dev": "vite",
+    "lint": "eslint --fix \"src/**/*.js\" || exit 0",
+    "build": "npm run init && npm run lint && vite build",
+    "preview": "vite preview",
+    "clean": "vite --force",
+    "test": "npm run test:unit",
+    "test:unit": "vitest --reporter=verbose run",
+    "init": "npm run extract",
+    "extract": "npm run extract:remix",
+    "extract:remix": "node scripts/extract-remix.cjs --output ./public/data"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.34.0",
+    "canvas": "^3.2.0",
+    "eslint": "^9.34.0",
+    "eslint-import-resolver-vite": "^2.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "globals": "^16.3.0",
+    "jsdom": "^26.1.0",
+    "sass-embedded": "^1.89.2",
+    "vite": "^7.0.4",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "dsfrign": "https://github.com/IGNF/cartes.gouv.fr-editeur-dsfr/releases/download/v1.14.1/ignf-dsfr-v1.14.1.tgz",
+    "dsfr-extension": "git+https://github.com/IGNF/dsfr-extension#556230b",
+    "geopf-extensions-openlayers": "./geopf-extensions-openlayers-1.0.0-beta.8-001.tgz",
+    "mcutils": "git+https://github.com/IGNF/cartes.gouv.fr-editeur-lib",
+    "remixicon": "^4.6.0"
+  },
+  "peerDependencies": {
+    "ol": "^10.7.0"
+  }
+}
