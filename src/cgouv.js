@@ -1,10 +1,8 @@
 import 'mcutils/cgouv/gpfStyleFn.js'
 import Carte from 'mcutils/Carte.js'
 import GPFCarte from 'mcutils/cgouv/Carte.js'
-import loadFonts from 'mcutils/cgouv/loadFonts'
-import story from './storymap';
-
-
+import loadFonts from 'mcutils/cgouv/loadFonts.js'
+import story from './storymap.js';
 
 // Check fonts are loaded
 loadFonts(() => {
@@ -13,6 +11,7 @@ loadFonts(() => {
     const carte = story.getCarte(k);
     if (carte) {
       carte.getMap().getLayers().forEach(l => {
+        console.log(l)
         if (l.layerVector_) {
           l.clearCache();
           l.layerVector_.changed();

@@ -1,8 +1,8 @@
 import config from 'mcutils/config/config.js'
 import StoryMap from 'mcutils/Storymap.js'
-import { getUrlParameter, hasUrlParameter } from 'mcutils/control/url'
+import { getUrlParameter, hasUrlParameter } from 'mcutils/control/url.js'
 
-import api from 'mcutils/api/api'
+import api from 'mcutils/api/api.js'
 
 // Get parameters
 const params = {
@@ -41,6 +41,8 @@ function loadMap(story, params) {
   return true;
 }
 
-loadMap(story, params);
+if (!loadMap(story, params)) {
+  alert('Aucun ID de carte trouvé dans les paramètres de l\'URL. Veuillez ajouter "?map=ID" à l\'adresse de la page.');
+};
 
 export default story;
