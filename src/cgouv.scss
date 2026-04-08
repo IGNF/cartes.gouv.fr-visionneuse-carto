@@ -10,8 +10,39 @@
     padding: 0 6px;
   }
 
-  div[id^='GPlayerSwitcher-'] {
-    top: 48px;
+  div[id^="GPsearchEngine-"] {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 52px;
+  
+    @include mx.respond-from('sm') {
+      top: 8px;
+    }
+
+    .gpf-widget {
+      width: 100%;
+      transform: none;
+    }
+
+    .GPsearchInputSubmit {
+      background-color: var(--text-action-high-blue-france);
+      &:hover,
+      &:focus {
+        background-color: var(--text-action-high-blue-france);
+      }
+      &:before {
+        background-color: var(--text-inverted-blue-france);
+      }
+    }
+  }
+
+  div[id^="GPlayerSwitcher-"] {
+    top: 104px;
+
+    & > button {
+      width: 3rem;
+      height: 3rem;
+    }
 
     @include mx.respond-from('sm') {
       top: 8px
@@ -35,8 +66,8 @@
     transform: translateX(calc(-100% + 46px));
 
     @include mx.respond-from('sm') {
-      margin-top: -40px;
-      transform: translateX(calc(-100% - 12px));
+      margin-top: -3rem;
+      transform: translateX(calc(-100% - 1.25rem));
     }
   }
 
