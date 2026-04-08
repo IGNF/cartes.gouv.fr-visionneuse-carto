@@ -1,0 +1,43 @@
+@use './mixins.scss' as mx;
+
+[data-role="storymap"] {
+
+  .ol-permalink {
+    display: none!important;
+  }
+
+  .position-container-bottom-right {
+    padding: 0 6px;
+  }
+
+  div[id^='GPlayerSwitcher-'] {
+    top: 48px;
+
+    @include mx.respond-from('sm') {
+      top: 8px
+    }
+  }
+
+  div[id^='GPlayerSwitcher-']:after {
+    display: none;
+  }
+  
+  button.gpf-btn--primary {
+    background-color: var(--text-action-high-blue-france)!important;
+
+  }
+  button.gpf-btn--primary[aria-pressed=true] {
+    /* background-color: var(--hover-tint)!important; */
+  }
+  
+  div:not(.position)>div[id^=GPlayerSwitcher-]>dialog[id^=GPlayersList] {
+    margin-top: -8px;
+    transform: translateX(calc(-100% + 46px));
+
+    @include mx.respond-from('sm') {
+      margin-top: -40px;
+      transform: translateX(calc(-100% - 12px));
+    }
+  }
+
+}
