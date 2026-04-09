@@ -74,8 +74,10 @@ story.on('read', () => {
       carte.getMap().addControl(searchEngine);
       // Add filebar
       carte.getMap().addControl(fileBar);
-      fileBar.element.querySelector('[data-attr="mapTitle"]').innerText = story.getTitle() || 'Carte sans titre';
-      fileBar.element.querySelector('[data-attr="mapTitle"]').title = story.getTitle() || 'Carte sans titre';
+      fileBar.element.querySelectorAll('[data-attr="mapTitle"]').forEach(elt => {
+        elt.innerText = story.getTitle() || 'Carte sans titre';
+        elt.title = story.getTitle() || 'Carte sans titre';
+      })
       story.getCarte().getControl('title').setTitle(story.getTitle() || 'Titre');
       // Print
       fileBar.element.querySelector('[data-action="print-map"]').addEventListener('click', () => {

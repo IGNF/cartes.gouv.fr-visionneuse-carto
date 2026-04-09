@@ -70,11 +70,19 @@ let fileToggle = new Toggle({
   bar: mainBar
 });
 
+const mapTitleBar = new TextButton({
+  html: 'Carte sans titre',
+  attributes: {
+    title: 'Carte sans titre',
+    'data-attr': 'mapTitle'
+  },
+  className: 'fr-px-2w fr-py-1w fr-text map-title map-title-bar'
+});
 
 // Barre principale
 let filebar = new Bar({
   className: 'ol-bar--separator ol-bar--row map-handle',
-  controls: [fileToggle]
+  controls: [fileToggle, mapTitleBar]
 });
 
 export default filebar;

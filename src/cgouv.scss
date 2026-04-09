@@ -13,14 +13,14 @@
   div[id^="GPsearchEngine-"] {
     left: 50%;
     transform: translateX(-50%);
-    top: 52px;
+    top: 63px;
   
     @include mx.respond-from('sm') {
       top: 8px;
     }
 
     .gpf-widget {
-      width: 100%;
+      width: calc(100% - 3px);
       transform: none;
     }
 
@@ -37,7 +37,7 @@
   }
 
   div[id^="GPlayerSwitcher-"] {
-    top: 104px;
+    top: 115px;
 
     & > button {
       width: 3rem;
@@ -53,6 +53,9 @@
     display: none;
   }
   
+  .map-handle {
+  }
+
   button.gpf-btn--primary {
     background-color: var(--text-action-high-blue-france)!important;
 

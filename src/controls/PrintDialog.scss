@@ -15,6 +15,12 @@
   form, .ol-print-param {
     background-color: var(--background-lifted-grey);
   }
+  @media (max-width: 768px) {
+    form {
+      inset: 1rem 0 0 0;
+    }
+  }
+
   .ol-page {
     box-shadow: none!important;
     border: 1px solid var(--border-default-grey);
