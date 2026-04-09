@@ -1,5 +1,5 @@
 import ol_ext_element from 'ol-ext/util/element.js';
-import {getUid} from 'ol/util';
+import {getUid} from 'ol/util.js';
 
 import './PrintDialog.scss';
 

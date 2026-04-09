@@ -1,5 +1,5 @@
 import config from 'mcutils/config/config.js'
-import StoryMap from 'mcutils/Storymap.js'
+import StoryMap from 'mcutils/StoryMap.js'
 import { getUrlParameter } from 'mcutils/control/url.js'
 
 import GeoportalZoom from 'geopf-extensions-openlayers/src/packages/Controls/Zoom/GeoportalZoom.js';

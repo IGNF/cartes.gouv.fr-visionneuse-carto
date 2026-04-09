@@ -1,5 +1,5 @@
 import LayerSwitcher from 'geopf-extensions-openlayers/src/packages/Controls/LayerSwitcher/LayerSwitcher.js';
-import md2html from 'mcutils/md/md2html';
+import md2html from 'mcutils/md/md2html.js';
 
 const layerSwitcher = new LayerSwitcher({
   options: {
@@ -14,7 +14,7 @@ const layerSwitcher = new LayerSwitcher({
     advancedTools: [{
       label: 'Infos', 
       className: 'fr-icon-information-line',
-      cb: (e, switcher, layer, options) => { 
+      cb: (e, switcher, layer) => { 
         const info = layer.get('desc') || '*Aucune description disponible*';
         console.log(layer.get('title') || layer.get('name'));
         console.log(md2html(info)) 
