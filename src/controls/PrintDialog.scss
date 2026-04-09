@@ -1,0 +1,205 @@
+.ol-print-document {
+  .GPwidget  {
+    display: none;
+  }
+}
+
+.ol-print-document .ol-ext-print-dialog {
+  font-size: 1rem;
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+  }
+  form, .ol-print-param {
+    background-color: var(--background-lifted-grey);
+  }
+  .ol-page {
+    box-shadow: none!important;
+    border: 1px solid var(--border-default-grey);
+  }
+
+  .ol-orientation {
+    text-align: left;
+
+    label {
+      align-items: center;
+      margin: 0;
+      min-width: 6rem;
+    }
+
+    & > span {
+      display: block;
+      box-shadow: none;
+      height: auto;
+      margin-top: 0;
+      padding: 0;
+    }
+    & > span::before {
+      display: none;
+    }
+
+
+    input:checked + span {
+      color: var(--text-action-high-blue-france);
+      box-shadow: inset 0 0 0 1px var(--background-action-high-blue-france);
+    }
+
+    label span {
+      box-shadow: inset 0 0 0 1px var(--border-default-grey);
+      border-radius: 5px;
+      padding: 0.25rem  0.25rem 0.25rem 2rem;
+      width: auto;
+      position: relative;
+      display: block;
+
+      &:before {
+        width: 0.75rem;
+        height: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        bottom: unset;
+        left: 0.5rem;
+        color: currentColor;
+        background-color: transparent;
+        box-shadow: unset;
+        border: 2px solid currentColor;
+        border-radius: 0;
+        margin: 0 0.25rem;
+      }
+      &:hover {
+        background-color: var(--background-default-grey-hover);
+      }
+    }
+    .landscape span:before {
+      margin: 0;
+      width: 1rem;
+      height: 0.75rem;
+    }
+  }
+
+  .ol-ext-toggle-switch {
+    span {
+      opacity: 1;
+      height: 1.25rem;
+      width: 2.35rem;
+      right: -3rem;
+      top: calc(50% + .2rem);
+      color: var(--text-action-high-blue-france);
+
+      &:before {
+        font-size: 0.9rem;
+        text-align: center;
+        font-weight: lighter;
+        line-height: 1.25rem;
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+      
+    }
+    input:checked + span:before {
+      content: "\f00c";
+      font-family: FontAwesome;
+      transform: translate(1rem, -50%);
+    }
+  }
+
+  input[type="checkbox"] {
+    width: 0;
+    margin: 0;
+  }
+  input[type="text"] {
+    background-color: var(--background-contrast-grey);
+    width: 100%;
+    margin-left: 0;
+    display: block;
+  }
+  select {
+    background-color: var(--background-contrast-grey)!important;
+    color: var(--text-default-grey)!important;
+    width: 100%!important;
+    opacity: 1!important;
+  }
+  select option {
+    color: currentColor;
+  }
+
+  select:focus {
+    outline-color: #0a76f6;
+  }
+
+  input:focus + span {
+    outline: none ;
+    z-index: 1;
+  }
+  input:focus-visible + span {
+    z-index: 1;
+    outline: 2px solid #0a76f6;
+    outline-offset: 2px;
+  }
+  .ol-ext-toggle-switch span {
+    transition: none;
+  }
+
+  .ol-ext-toggle-switch input:focus-visible + span,
+  .ol-ext-toggle-switch input:focus + span {
+    box-shadow: none;
+  }
+
+  .ol-ext-buttons {
+    display: flex;
+    gap: .5rem;
+    flex: 1 1 0;
+    justify-content: center;
+    align-items: center;
+  }
+  button.gpf-btn {
+    padding: 0.5rem 1rem;
+    margin: 0;
+    opacity: 1;
+    width: 50%;
+    text-align: center;
+    display: block;
+    box-shadow: inset 0 0 0 1px var(--border-default-grey);
+    color: var(--text-action-high-blue-france);
+    background-color: transparent;
+    &:hover {
+      background-color: var(--background-default-grey-hover);
+    }
+  }
+
+  button[type="submit"].gpf-btn {
+    align-items: center;
+    background-color: var(--background-action-high-blue-france)!important;
+    color: var(--text-inverted-blue-france);
+    box-shadow: inset 0 0 0 1px var(--background-action-high-blue-france);
+
+    &:hover {
+      background-color: var(--background-action-high-blue-france-hover)!important;
+    }
+  }
+
+  .ol-clipboard-copy {
+    animation: none;
+    width: 100%;
+    display: none;
+    position: relative;
+    opacity: 1;
+    background: transparent;
+    margin: 0;
+    padding: 0.5rem 0 0;
+    color: var(--text-default-grey)
+  }
+  .ol-savelegend .ol-clipboard-copy.visible,
+  .ol-clipboard-copy.fr-visible {
+    display: block;
+  }
+
+  [data-no-legend] {
+    .ol-legend,
+    .ol-savelegend {
+      display: none;
+    }
+  }
+}

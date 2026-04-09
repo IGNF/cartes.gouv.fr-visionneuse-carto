@@ -5,8 +5,11 @@ import { getUrlParameter } from 'mcutils/control/url.js'
 import GeoportalZoom from 'geopf-extensions-openlayers/src/packages/Controls/Zoom/GeoportalZoom.js';
 import layerSwitcher from './controls/layerSwitcher.js';
 import searchEngine from './controls/searchEngine.js';
+import setPrintDlg from './controls/setPrintDlg.js';
 import fileBar from './controls/fileBar.js';
 import api from 'mcutils/api/api.js'
+
+import './storymap.scss'
 
 // Get parameters
 const params = {
@@ -73,10 +76,12 @@ story.on('read', () => {
       carte.getMap().addControl(fileBar);
       fileBar.element.querySelector('[data-attr="mapTitle"]').innerText = story.getTitle() || 'Carte sans titre';
       fileBar.element.querySelector('[data-attr="mapTitle"]').title = story.getTitle() || 'Carte sans titre';
+      story.getCarte().getControl('title').setTitle(story.getTitle() || 'Titre');
       // Print
       fileBar.element.querySelector('[data-action="print-map"]').addEventListener('click', () => {
         carte.getControl('printDlg').print();
       });
+      setPrintDlg(carte);
     }
   })
 });

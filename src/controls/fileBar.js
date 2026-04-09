@@ -3,7 +3,7 @@ import Bar from 'ol-ext/control/Bar.js';
 import Toggle from 'ol-ext/control/Toggle.js';
 import TextButton from 'ol-ext/control/TextButton.js';
 
-import './fileBar.css'
+import './fileBar.scss'
 
 
 // Titre de la carte
