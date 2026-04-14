@@ -15,9 +15,10 @@ const layerSwitcher = new LayerSwitcher({
       label: 'Infos', 
       className: 'fr-icon-information-line',
       cb: (e, switcher, layer) => { 
+        const title = layer.get('title') || layer.get('name') || '';
         const info = layer.get('desc') || '*Aucune description disponible*';
-        console.log(layer.get('title') || layer.get('name'));
-        console.log(md2html(info)) 
+        const content = (title ? `# ${title}` : '') + `\n${info}`;
+        console.log(content);
       },
     }, {
       key: LayerSwitcher.switcherButtons.EXTENT,
@@ -27,6 +28,7 @@ const layerSwitcher = new LayerSwitcher({
 });
 
 // Set Style
+layerSwitcher.container.classList.add('ol-right');
 const switcherBtn = layerSwitcher.container.querySelector("[id^=GPshowLayersListPicto]");
 switcherBtn.classList.remove('fr-btn--tertiary', 'gpf-btn--tertiary');
 switcherBtn.classList.add('gpf-btn--primary');

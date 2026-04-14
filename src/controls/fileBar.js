@@ -58,14 +58,14 @@ const bar1 = new Bar({
 
 const mainBar = new Bar({
   className: 'ol-bar--separator ol-bar--column fr-p-2w map-file-actions',
-  controls: [mapTitle, bar1]
+  controls: [mapTitle /*, bar1 */]
 });
 
 let fileToggle = new Toggle({
   classButton: 'fr-btn fr-btn--tertiary-no-outline fr-icon-ign-add-data',
   attributes: {
-    title: 'Gestion ma carte',
-    'aria-label': 'Gestion ma carte',
+    title: 'Ma carte',
+    'aria-label': 'Ma carte',
   },
   bar: mainBar
 });

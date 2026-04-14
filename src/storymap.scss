@@ -1,0 +1,27 @@
+[data-role="storymap"] .map button {
+  color: var(--text-action-high-blue-france)!important;
+}
+
+.ol-full-screen {
+  position: absolute;
+  top: unset;
+  left: unset;
+  bottom: 6.5rem;
+  right: 0.5rem;
+}
+
+.ol-full-screen button {
+  height:40px;
+  width:40px;
+  font-size: 1.5rem;
+}
+
+.ol-full-screen button:after {
+  content: "\ed9c";
+  font-family: remixicon;
+  mask: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -7,6 +7,8 @@ import layerSwitcher from './controls/layerSwitcher.js';
 import searchEngine from './controls/searchEngine.js';
 import setPrintDlg from './controls/setPrintDlg.js';
 import fileBar from './controls/fileBar.js';
+import Beta from './controls/Beta.js';
+import FullScreen from 'ol/control/FullScreen.js';
 import api from 'mcutils/api/api.js'
 
 import './storymap.scss'
@@ -78,12 +80,22 @@ story.on('read', () => {
         elt.innerText = story.getTitle() || 'Carte sans titre';
         elt.title = story.getTitle() || 'Carte sans titre';
       })
-      story.getCarte().getControl('title').setTitle(story.getTitle() || 'Titre');
+      carte.getControl('title').setTitle(story.getTitle() || 'Titre');
       // Print
-      fileBar.element.querySelector('[data-action="print-map"]').addEventListener('click', () => {
+      fileBar.element.querySelector('[data-action="print-map"]')?.addEventListener('click', () => {
         carte.getControl('printDlg').print();
       });
       setPrintDlg(carte);
+      // Add control
+      carte.getMap().addControl(new Beta);
+      const fscreen = new FullScreen();
+      fscreen.element.className = 'gpf-widget ol-right gpf-control gpf-control--fullscreen ol-full-screen';
+      const fsbtn = fscreen.element.querySelector('button');
+      fsbtn.className = 'fr-btn fr-btn--tertiary-no-outline fr-btn--tertiary gpf-btn-icon';
+      // 'ol-custom-zoom-in GPzoomIn GPshowOpen GPshowAdvancedToolPicto gpf-btn-icon-zoom-in'
+      fsbtn.innerText = '';
+      fsbtn.ariaLabel = 'Afficher le plein écran';
+      carte.getMap().addControl(fscreen);
     }
   })
 });
