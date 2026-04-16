@@ -1,6 +1,25 @@
 @use './mixins.scss' as mx;
 
-[data-role="storymap"] {
+[data-role="storymap"] .map {
+
+  .fr-btn--tertiary-no-outline, 
+  .fr-btn--close, 
+  .fr-btn--display, 
+  .fr-btn--fullscreen, 
+  .fr-btn--tooltip, 
+  .fr-btn--briefcase, 
+  .fr-btn--team {
+    background-color: transparent;
+    --hover: inherit;
+    --active: inherit;
+    color: var(--text-action-high-blue-france);
+    &:focus {
+      background-color: transparent;
+    }
+    &:hover {
+      background-color: var(--hover-tint);
+    }
+  }
 
   .ol-permalink {
     display: none!important;
@@ -9,6 +28,7 @@
   .position-container-bottom-right {
     padding: 0 3px;
     bottom: .5rem;
+    right: .3rem;
   }
 
   div[id^="GPsearchEngine-"] {
@@ -62,11 +82,13 @@
   }
 
   button.gpf-btn--primary {
-    background-color: var(--text-action-high-blue-france)!important;
+    background-color: var(--text-action-high-blue-france);
 
   }
+  button.gpf-btn--primary:focus,
+  button.gpf-btn--primary:hover,
   button.gpf-btn--primary[aria-pressed=true] {
-    /* background-color: var(--hover-tint)!important; */
+    background-color: var(--hover-tint)!important; 
   }
   
   div:not(.position)>div[id^=GPlayerSwitcher-]>dialog[id^=GPlayersList] {
@@ -86,6 +108,15 @@
     background-color: var(--background-default-grey);
     border-radius: 5px;
     width: auto;
+  }
+  .ol-custom-zoom-in {
+    margin-bottom: 4px
+  }
+  .ol-custom-zoom-out {
+    margin-top: 4px;
+    span:before {
+      top: -4px;
+    }
   }
   .gpf-widget > button {
     box-shadow: none;

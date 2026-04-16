@@ -2,6 +2,7 @@ import LayerSwitcher from 'geopf-extensions-openlayers/src/packages/Controls/Lay
 import Modal from '../controls/Modal/Modal.js';
 import Action from '../actions/Action.js';
 import md2html from 'mcutils/md/md2html.js';
+import element from 'ol-ext/util/element.js';
 
 const modalInfo = new Modal({
   id: 'modal-layer-info',
@@ -38,8 +39,17 @@ const layerSwitcher = new LayerSwitcher({
       cb: (e, switcher, layer) => { 
         const title = layer.get('title') || layer.get('name') || '';
         const info = layer.get('desc') || '*Aucune description disponible*';
+        const copy = layer.getSource().getAttributions()().join(' - ');
         layerInfoAction.title = title;
-        layerInfoAction.content = md2html(info);
+        layerInfoAction.content = element.create('div', {
+          className: 'md',
+          html: md2html(info)
+        });
+        element.create('div', {
+          className: 'attribution',
+          html: copy,
+          parent: layerInfoAction.content
+        });
         Action.open(modalInfo, 'layer-info');
       },
     }, {
