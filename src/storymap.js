@@ -7,6 +7,7 @@ import layerSwitcher from './controls/layerSwitcher.js';
 import searchEngine from './controls/searchEngine.js';
 import setPrintDlg from './controls/setPrintDlg.js';
 import fileBar from './controls/fileBar.js';
+import ScaleLine from 'ol/control/ScaleLine.js';
 import Beta from './controls/Beta.js';
 import FullScreen from 'ol/control/FullScreen.js';
 import api from 'mcutils/api/api.js'
@@ -88,14 +89,17 @@ story.on('read', () => {
       setPrintDlg(carte);
       // Add control
       carte.getMap().addControl(new Beta);
+      // Fullscrenn
       const fscreen = new FullScreen();
       fscreen.element.className = 'gpf-widget ol-right gpf-control gpf-control--fullscreen ol-full-screen';
       const fsbtn = fscreen.element.querySelector('button');
       fsbtn.className = 'fr-btn fr-btn--tertiary-no-outline fr-btn--tertiary gpf-btn-icon';
-      // 'ol-custom-zoom-in GPzoomIn GPshowOpen GPshowAdvancedToolPicto gpf-btn-icon-zoom-in'
       fsbtn.innerText = '';
       fsbtn.ariaLabel = 'Afficher le plein écran';
       carte.getMap().addControl(fscreen);
+      // Scale line
+      carte._controls.scaleLine = new ScaleLine();
+      carte.getMap().addControl(carte._controls.scaleLine);
     }
   })
 });

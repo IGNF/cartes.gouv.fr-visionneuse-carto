@@ -1,5 +1,26 @@
 import LayerSwitcher from 'geopf-extensions-openlayers/src/packages/Controls/LayerSwitcher/LayerSwitcher.js';
+import Modal from '../controls/Modal/Modal.js';
+import Action from '../actions/Action.js';
 import md2html from 'mcutils/md/md2html.js';
+
+const modalInfo = new Modal({
+  id: 'modal-layer-info',
+  title: 'Informations sur la couche',
+  size: 'sm',
+});
+
+const layerInfoAction = new Action({
+  id: 'layer-info',
+  title: 'Informations sur la couche',
+  content: 'content',
+  buttons: [
+    {
+      label: "OK",
+      kind: 0,
+      close: true,
+    }
+  ],
+});
 
 const layerSwitcher = new LayerSwitcher({
   options: {
@@ -17,8 +38,9 @@ const layerSwitcher = new LayerSwitcher({
       cb: (e, switcher, layer) => { 
         const title = layer.get('title') || layer.get('name') || '';
         const info = layer.get('desc') || '*Aucune description disponible*';
-        const content = (title ? `# ${title}` : '') + `\n${info}`;
-        console.log(content);
+        layerInfoAction.title = title;
+        layerInfoAction.content = md2html(info);
+        Action.open(modalInfo, 'layer-info');
       },
     }, {
       key: LayerSwitcher.switcherButtons.EXTENT,
