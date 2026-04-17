@@ -38,18 +38,21 @@ const layerSwitcher = new LayerSwitcher({
       className: 'fr-icon-information-line',
       cb: (e, switcher, layer) => { 
         const title = layer.get('title') || layer.get('name') || '';
-        const info = layer.get('desc') || '*Aucune description disponible*';
-        const copy = layer.getSource().getAttributions()().join(' - ');
+        const info = layer.get('desc') || layer.get('description') || '*Aucune description disponible.*';
         layerInfoAction.title = title;
         layerInfoAction.content = element.create('div', {
           className: 'md',
-          html: md2html(info)
+          html: md2html(info, layer.getProperties())
         });
-        element.create('div', {
-          className: 'attribution',
-          html: copy,
-          parent: layerInfoAction.content
-        });
+        // Copyright
+        if (layer.getSource().getAttributions()) {
+          element.create('DIV', {
+            className: 'copy',
+            html: layer.getSource().getAttributions()({ extent: [-Infinity,-Infinity,Infinity,Infinity] }).join(' - '),
+            parent: layerInfoAction.content
+          })
+        }
+        // Open Modal
         Action.open(modalInfo, 'layer-info');
       },
     }, {
