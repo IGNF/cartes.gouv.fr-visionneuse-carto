@@ -1,0 +1,43 @@
+@use '../mixins.scss' as mix;
+
+.ol-ext-print-dialog {
+  margin: 0;
+  box-sizing: content-box;
+
+  &.ol-visible {
+    font-size: 1em;
+  }
+  input,
+  select,
+  textarea {
+    font-size: 1em;
+    appearance: auto;
+    border: 1px solid #666;
+    padding: 0.5em;
+  }
+}
+
+.ol-ctrlbar {
+  box-shadow: none !important;
+}
+
+// Hide permalink control
+.ol-permalink {
+  display: none !important;
+}
+
+.ol-scale-line {
+  right: 4rem;
+  bottom: 0.5rem;
+  filter: drop-shadow(var(--raised-shadow));
+}
+
+// Temporaire, position de la barre full screen
+.ol-control.ol-bar.ol-bottom.ol-right.temp-fullscreen-bar {
+  bottom: 6.5rem;
+}
+
+.ol-viewport .ol-control.gpf-simple-menu {
+  background-color: var(--background-default-grey);
+  border-radius: 0;
+}

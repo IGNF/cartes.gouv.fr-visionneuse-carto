@@ -1,70 +1,32 @@
 import LayerSwitcher from 'geopf-extensions-openlayers/src/packages/Controls/LayerSwitcher/LayerSwitcher.js';
-import Modal from '../controls/Modal/Modal.js';
-import Action from '../actions/Action.js';
-import md2html from 'mcutils/md/md2html.js';
-import element from 'ol-ext/util/element.js';
-
-const modalInfo = new Modal({
-  id: 'modal-layer-info',
-  title: 'Informations sur la couche',
-  size: 'sm',
-});
-
-const layerInfoAction = new Action({
-  id: 'layer-info',
-  title: 'Informations sur la couche',
-  content: 'content',
-  buttons: [
-    {
-      label: "OK",
-      kind: 0,
-      close: true,
-    }
-  ],
-});
 
 const layerSwitcher = new LayerSwitcher({
   options: {
-    tipLabel: 'Couches', // Optional label for button
-    groupSelectStyle: 'group', // Can be 'children' [default], 'group' or 'none'
     collapsed: true,
     panel: true,
-    counter: false,
+    counter: true,
     allowEdit: false,
     allowDelete: false,
-    allowTooltips: true,
-    advancedTools: [{
-      label: 'Infos', 
-      className: 'fr-icon-information-line',
-      cb: (e, switcher, layer) => { 
-        const title = layer.get('title') || layer.get('name') || '';
-        const info = layer.get('desc') || layer.get('description') || '*Aucune description disponible.*';
-        layerInfoAction.title = title;
-        layerInfoAction.content = element.create('div', {
-          className: 'md',
-          html: md2html(info, layer.getProperties())
-        });
-        // Copyright
-        if (layer.getSource().getAttributions()) {
-          element.create('DIV', {
-            className: 'copy',
-            html: layer.getSource().getAttributions()({ extent: [-Infinity,-Infinity,Infinity,Infinity] }).join(' - '),
-            parent: layerInfoAction.content
-          })
-        }
-        // Open Modal
-        Action.open(modalInfo, 'layer-info');
+    allowTooltips: false,
+    label: "Couches",
+    advancedTools: [
+      {
+        key: LayerSwitcher.switcherButtons.INFO,
+        label: 'Informations',
       },
-    }, {
-      key: LayerSwitcher.switcherButtons.EXTENT,
-      label: 'Recenter',
-    }]
+      {
+        key: LayerSwitcher.switcherButtons.EXTENT,
+        label: 'Recenter',
+      }]
   }
 });
 
 // Set Style
-layerSwitcher.container.classList.add('ol-right');
-const switcherBtn = layerSwitcher.container.querySelector("[id^=GPshowLayersListPicto]");
+layerSwitcher.container.classList.remove("gpf-mobile-fullscreen")
+
+// Passe le bouton en primary
+let switcherBtn = layerSwitcher.container.querySelector("[id^=GPshowLayersListPicto]");
+switcherBtn.ariaLabel = "Couches";
 switcherBtn.classList.remove('fr-btn--tertiary', 'gpf-btn--tertiary');
 switcherBtn.classList.add('gpf-btn--primary');
 

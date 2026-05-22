@@ -1,0 +1,12 @@
+@use '../mixins.scss' as mix;
+
+.ol-print-map {
+  .gpf-widget {
+    display: none;
+  }
+}
+
+.ol-bar.ol-control .GPToggleControl > button.GPToggleButton {
+  margin: 0px;
+  display: inline-flex;
+}
