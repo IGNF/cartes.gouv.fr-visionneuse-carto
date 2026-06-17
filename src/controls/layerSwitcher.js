@@ -12,11 +12,10 @@ const layerSwitcher = new LayerSwitcher({
     advancedTools: [
       {
         key: LayerSwitcher.switcherButtons.INFO,
-        label: 'Informations',
       },
       {
         key: LayerSwitcher.switcherButtons.EXTENT,
-        label: 'Recenter',
+        label: 'Recentrer',
       }]
   }
 });
