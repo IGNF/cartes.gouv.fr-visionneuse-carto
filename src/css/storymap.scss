@@ -47,15 +47,16 @@ body {
       text-wrap: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      // >= SM : texte XL (MD ici pour la visualisation)
+      @include mix.respond-from('sm') {
+        text-wrap: auto;
+        overflow: visible;
+      }
     }
 
     @include mix.respond-from('sm') {
       max-height: none;
-      > * {
-        text-wrap: nowrap;
-
-        overflow: visible;
-      }
     }
 
     // Modifie la taille maximale de l'image
@@ -67,10 +68,6 @@ body {
       box-shadow: none;
       float: left;
       margin-right: 0.5rem;
-      @include mix.respond-from('sm') {
-        float: right;
-        margin-right: 0;
-      }
     }
 
     // Titre
@@ -97,11 +94,85 @@ body {
       line-height: 1.25rem;
       color: var(--text-mention-grey);
     }
+
+    // Contient le bouton permettant de fermer le titre en mobile
+    > .title__actions {
+      display: none;
+      position: relative;
+      max-width: none;
+      padding: 0.5rem 0 0;
+      margin: 0.75rem -0.75rem 0;
+      border-top: 1px solid var(--border-default-grey);
+
+      > button {
+        width: 100%;
+        margin: 0 0.75rem;
+        justify-content: center;
+      }
+    }
+
+    // Titre ouvert
+    &.title--opened {
+      z-index: 10;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      // height: auto pour ne pas recouvrir toute l'appli
+      height: auto;
+      max-height: 100svh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      column-gap: 0.5rem;
+
+      > * {
+        text-wrap: auto;
+        overflow: visible;
+        grid-column: 2;
+      }
+
+      > img {
+        top: 0;
+        bottom: 0;
+        position: relative;
+        height: auto;
+        grid-column: 1;
+      }
+
+      > .title__actions {
+        display: flex;
+        grid-column: 1 / 3;
+      }
+    }
+  }
+
+  // Modifie le titre ouvert s'il n'y a pas de logo
+  &[data-logo='none'] {
+    > .title.title--opened {
+      grid-template-columns: 1fr;
+      column-gap: 0;
+    }
+  }
+
+  // Fond semi-transparent affiché derrière le titre ouvert en mode mobile.
+  // Cliquer dessus ferme le titre.
+  .title__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    background-color: var(--overlay-default-grey, rgba(0, 0, 0, 0.5));
+    cursor: pointer;
   }
 
   &:not([data-title='hidden']) {
     > .title {
       display: block;
+
+      // Fais un display grid si le titre est ouvert
+      &.title--opened {
+        display: grid;
+      }
     }
   }
 
@@ -110,6 +181,13 @@ body {
     background-color: unset;
     top: 0;
     color: var(--text-default-grey);
+  }
+
+  &:has(.title--opened) {
+    // Ajoute un margin-top pour ne pas déplacer la carte
+    div.map {
+      margin-top: 4.5rem;
+    }
   }
 
   select.fr-select {

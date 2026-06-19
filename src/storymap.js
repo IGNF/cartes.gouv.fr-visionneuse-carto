@@ -15,6 +15,7 @@ import api from 'mcutils/api/api.js'
 import Carte from 'mcutils/Carte.js'
 import GPFCarte from 'mcutils/cgouv/Carte.js'
 import { setLogo, setTitle } from './utils/story.js';
+import openTitle, { addCloseButtonTitle } from './utils/openTitle.js';
 
 // Patch Carte with GPFCarte
 ['read'].forEach(k => {
@@ -135,8 +136,13 @@ story.on('read', () => {
       setLogo(story, story.get("logo"));
 
       // Affiche le titre s'il y'en a un
-      console.log(story.get("showTitle"))
       story.get("showTitle") ? story.showTitle(true) : story.showTitle(false);
+
+      // Ajoute un écouteur d'événement sur le titre
+      const btnCloseAdded = addCloseButtonTitle(story);
+      if (btnCloseAdded) {
+        story.element.titleDiv.addEventListener("click", () => openTitle(story))
+      }
     }
   })
 
