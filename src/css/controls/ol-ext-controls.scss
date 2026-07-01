@@ -28,13 +28,15 @@
 
 .ol-scale-line {
   right: 4rem;
-  bottom: 0.5rem;
+  // hauteur initiale + surélévation dû aux copyrights
+  bottom: calc(0.5rem + 0.75rem);
   filter: drop-shadow(var(--raised-shadow));
 }
 
 // Temporaire, position de la barre full screen
 .ol-control.ol-bar.ol-bottom.ol-right.temp-fullscreen-bar {
-  bottom: 6.5rem;
+  // hauteur initiale + surélévation dû aux copyrights
+  bottom: calc(6.5rem + 0.75rem);
 }
 
 .ol-viewport .ol-control.gpf-simple-menu {

@@ -6,6 +6,7 @@
 import 'mcutils/cgouv/gpfStyleFn.js'
 import loadFonts from 'mcutils/cgouv/loadFonts.js'
 import story from './storymap.js';
+import "./mcutils/Feature.js";
 
 // Check fonts are loaded
 loadFonts(() => {
