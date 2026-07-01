@@ -69,6 +69,15 @@ div[id^='GPlayerSwitcher-'] {
     font-weight: 500;
     padding: 0;
   }
+
+  [id^='GPlayerInfoContent'] {
+    width: auto;
+    user-select: text;
+
+    @include mix.respond-from('sm') {
+      width: 350px;
+    }
+  }
 }
 
 div[id^='GPsearchEngine-Advanced-'] {
@@ -209,6 +218,11 @@ div:not(.position) {
       }
     }
   }
+}
+
+.position.position-container-bottom-right {
+  // hauteur initiale + surélévation dû aux copyrights
+  bottom: calc(0.5rem + 0.75rem);
 }
 
 // FIXME : améliorer la gestion pour ne pas avoir à faire ça ici

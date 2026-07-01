@@ -6,7 +6,9 @@
 .ol-beta {
   position: absolute;
   left: 0;
-  bottom: 0;
+  // Différence avec éditeur carto
+  // bottom: 0;
+  bottom: 0.75rem;
   margin: 0.5rem;
   padding: 0.25rem;
   z-index: 5;

@@ -1,3 +1,4 @@
+import './initGpf.js';
 import './dsfr.js';
 import "geopf-extensions-openlayers/css/Dsfr.css";
 
