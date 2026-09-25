@@ -10,12 +10,12 @@ import fullScreenBar from './controls/fullScreen.js';
 import { fullScreen } from './controls/fullScreen.js';
 import ScaleLine from 'ol/control/ScaleLine.js';
 import Beta from './controls/Beta.js';
-import api from 'mcutils/api/api.js'
 // import fileBar from './controls/fileBar.js';
 import Carte from 'mcutils/Carte.js'
 import GPFCarte from 'mcutils/cgouv/Carte.js'
 import { setLogo, setTitle } from './utils/story.js';
 import openTitle, { addCloseButtonTitle } from './utils/openTitle.js';
+import { getMapByViewId, getMapFileByViewId } from './api';
 
 // Patch Carte with GPFCarte
 ['read'].forEach(k => {
@@ -45,30 +45,42 @@ const story = new StoryMap({
  * @param {Object} params paramètre
  * @returns 
  */
-function loadMap(story, params) {
+async function loadMap(story, params) {
   if (!params.mapID) return false;
 
-  // Get the map
-  api.getMap(params.mapID, (e) => {
-    if (e.error) {
-      e.type = 'error';
-      story.dispatchEvent(e)
-      return;
+  try {
+    const metadataResponse = await getMapByViewId(params.mapID);
+    if (metadataResponse.status !== 200) {
+      story.dispatchEvent({ type: 'error', status: metadataResponse.status });
+      return false;
     }
-    if (e.premium === 'edugeo') story.set('key', config.edugeoKey)
-    if (!e.active) document.body.dataset.active = 0;
-    if (!e.valid) document.body.dataset.valid = 0;
-    // Load story
-    console.log(e)
-    story.load(e)
-  })
-  // OK
-  return true;
+
+    const metadata = metadataResponse.data;
+    if (metadata.premium === 'edugeo') story.set('key', config.edugeoKey);
+    if (!metadata.active) document.body.dataset.active = '0';
+    if (!metadata.valid) document.body.dataset.valid = '0';
+
+    const fileResponse = await getMapFileByViewId(metadata.view_id);
+    if (fileResponse.status !== 200) {
+      story.dispatchEvent({ type: 'error', status: fileResponse.status });
+      return false;
+    }
+
+    story.dispatchEvent({ type: 'read:start' });
+    story.readData(fileResponse.data, metadata.view_id, metadata);
+    return true;
+  } catch (error) {
+    console.error('Impossible de charger la carte', error);
+    story.dispatchEvent({ type: 'error', status: 0 });
+    return false;
+  }
 }
 
-if (!loadMap(story, params)) {
-  alert('Aucun ID de carte trouvé dans les paramètres de l\'URL. Veuillez ajouter "?map=ID" à l\'adresse de la page.');
-};
+void loadMap(story, params).then(loaded => {
+  if (!loaded) {
+    alert('Impossible de charger la carte. Vérifiez son identifiant dans l\'URL (?map=ID).');
+  }
+});
 
 // Replace controls
 story.on('read', () => {
@@ -175,7 +187,5 @@ story.on('read', () => {
     console.log(layerOptions)
   })
 });
-
-window.api = api;
 
 export default story;
