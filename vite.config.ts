@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite';
-import path from 'path';
 
 export default defineConfig(({ command }) => ({
-  base:  './',
-
+  base: process.env.BASE_URL || "/voir-une-carte/",
   build: {
-    outDir: './docs',
+    outDir: "./docs",
     emptyOutDir: true,
   },
+
+  envPrefix: ["API_URL"],
 
   test: {
     globals: true,
