@@ -7,6 +7,12 @@ export default defineConfig(({ command }) => ({
     emptyOutDir: true,
   },
 
+  // Pour DSFR legacy
+  css: {
+    lightningcss: {
+      errorRecovery: true,
+    },
+  },
   envPrefix: ["API_URL"],
 
   test: {

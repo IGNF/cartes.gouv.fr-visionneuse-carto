@@ -46,13 +46,13 @@
     "sass-embedded": "^1.89.2",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.62.1",
-    "vite": "^7.0.4",
-    "vitest": "^3.2.4"
+    "vite": "^8.0.0",
+    "vitest": "^5.0.0"
   },
   "dependencies": {
     "dsfrign": "https://github.com/IGNF/cartes.gouv.fr-editeur-dsfr/releases/download/v1.14.1/ignf-dsfr-v1.14.1.tgz",
     "geopf-extensions-openlayers": "./geopf-extensions-openlayers-1.0.0-beta.14-490.tgz",
-    "mcutils": "git+https://github.com/IGNF/cartes.gouv.fr-editeur-lib#v0.1.5",
+    "mcutils": "git+https://github.com/IGNF/cartes.gouv.fr-editeur-lib#v0.1.6",
     "remixicon": "^4.6.0"
   },
   "peerDependencies": {
