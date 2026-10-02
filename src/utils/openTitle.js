@@ -60,7 +60,7 @@ export function addCloseButtonTitle(story) {
 
   const closeButton = document.createElement("button");
   closeButton.type = "button";
-  closeButton.classList.add("fr-btn", "fr-btn--tertiary-no-outline","fr-btn--icon-left", "fr-icon-close-line",  TITLE_CLOSE_BUTTON_CLASS);
+  closeButton.classList.add("fr-btn", "fr-btn--sm", "fr-btn--tertiary-no-outline","fr-btn--icon-left", "fr-icon-close-line",  TITLE_CLOSE_BUTTON_CLASS);
   closeButton.textContent = "Fermer";
 
   closeButton.addEventListener("click", (e) => {
