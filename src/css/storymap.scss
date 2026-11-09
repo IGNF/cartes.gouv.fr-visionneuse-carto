@@ -41,6 +41,7 @@ body {
     overflow: visible;
     height: auto;
     max-height: 4.5rem;
+    user-select: text;
 
     > * {
       white-space: unset;
