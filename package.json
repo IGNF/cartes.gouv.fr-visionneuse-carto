@@ -9,8 +9,8 @@
   "scripts": {
     "start": "vite --force",
     "dev": "vite",
-    "generate-api": "orval",
     "build": "npm run lint && vite build",
+    "build-image": "vite build",
     "publish": "npm run init && npm run lint && vite build",
     "clean": "vite --force",
     "test": "npm run test:unit",
@@ -46,11 +46,12 @@
     "sass-embedded": "^1.89.2",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.62.1",
-    "vite": "^8.0.0",
+    "vite": "^8.3.8",
     "vitest": "^5.0.0"
   },
   "dependencies": {
-    "dsfrign": "https://github.com/IGNF/cartes.gouv.fr-editeur-dsfr/releases/download/v1.14.1/ignf-dsfr-v1.14.1.tgz",
+    "@gouvfr/dsfr": "^1.15.4",
+    "dsfrign": "https://github.com/IGNF/cartes.gouv.fr-editeur-dsfr/releases/download/v1.15.3/ignf-dsfr-v1.15.3.tgz",
     "geopf-extensions-openlayers": "./geopf-extensions-openlayers-1.0.0-beta.16-490.tgz",
     "mcutils": "git+https://github.com/IGNF/cartes.gouv.fr-editeur-lib#v0.1.6",
     "remixicon": "^4.6.0"
@@ -64,11 +65,11 @@
     ]
   },
   "lint-staged": {
-    "*": "prettier --write --ignore-unknown --no-error-on-unmatched-pattern",
-    "*.{js,ts,jsx,tsx}": "eslint src/ --report-unused-disable-directives --max-warnings 0 --no-warn-ignored --fix"
+    "*": "prettier --write --ignore-unknown --no-error-on-unmatched-pattern .",
+    "*.{js,ts}": "eslint src/ --report-unused-disable-directives --max-warnings 0 --no-warn-ignored --fix"
   },
   "engines": {
-    "node": ">=24.0.0 <26.0.0",
-    "npm": ">=11.13.0 <12.0.0"
+    "node": ">=24.0.0",
+    "npm": ">=11.13.0"
   }
 }
