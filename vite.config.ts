@@ -2,10 +2,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(({ command }) => ({
   base: process.env.BASE_URL || "/voir-une-carte/",
-  build: {
-    outDir: "./docs",
-    emptyOutDir: true,
-  },
+    build: {
+        emptyOutDir: true,
+    },
 
   // Pour DSFR legacy
   css: {
